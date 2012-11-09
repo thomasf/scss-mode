@@ -56,7 +56,9 @@
 \"../css\""
   :group 'scss)
 
-(defcustom scss-compile-error-regex '("\\(Syntax error:\s*.*\\)\n\s*on line\s*\\([0-9]+\\) of \\([^, \n]+\\)" 3 2 nil nil 1)
+(defcustom scss-compile-error-regex
+  '("\\(Syntax error:\s*.*\\)\n\s*on line\s*\\([0-9]+\\) of \\([^, \n]+\\)"
+    3 2 nil nil 1)
   "Regex for finding line number file and error message in
 compilation buffers, syntax from
 `compilation-error-regexp-alist' (REGEXP FILE LINE COLUMN TYPE
@@ -75,11 +77,12 @@ HYPERLINK HIGHLIGHT)"
 (defun scss-compile()
   "Compiles the directory belonging to the current buffer, using the --update option"
   (interactive)
-  (compile (concat scss-sass-command " " (mapconcat 'identity scss-sass-options " ") " --update "
-                   (when (string-match ".*/" buffer-file-name)
-                     (concat "'" (match-string 0 buffer-file-name) "'"))
-                   (when scss-output-directory
-                     (concat ":'" scss-output-directory "'")))))
+  (compile
+   (concat scss-sass-command " " (mapconcat 'identity scss-sass-options " ") " --update "
+           (when (string-match ".*/" buffer-file-name)
+             (concat "'" (match-string 0 buffer-file-name) "'"))
+           (when scss-output-directory
+             (concat ":'" scss-output-directory "'")))))
 
 ;;;###autoload
 (define-derived-mode scss-mode css-mode "SCSS"
