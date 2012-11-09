@@ -29,6 +29,8 @@
 ;;; Code:
 
 (require 'compile)
+(eval-when-compile
+  (require 'css-mode))
 
 (defgroup scss nil
   "Scss mode"
