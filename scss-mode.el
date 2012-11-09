@@ -28,7 +28,6 @@
 ;;
 ;;; Code:
 
-(require 'derived)
 (require 'compile)
 (require 'flymake)
 
